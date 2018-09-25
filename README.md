@@ -1,6 +1,6 @@
 # Predict future sales 
 
-This is the final project for [coursera online course: "How to Win a Data Science Competition: Learn from Top Kagglers"](https://www.coursera.org/learn/competitive-data-science/). It is also a public challenge on [Kaggle platform](https://www.kaggle.com/c/competitive-data-science-predict-future-sales).
+This is the final project for [coursera online course: "How to Win a Data Science Competition: Learn from Top Kagglers"](https://www.coursera.org/learn/competitive-data-science/). It is also a public challenge on the [Kaggle](https://www.kaggle.com/c/competitive-data-science-predict-future-sales) platform.
 
 ### Goal
 
@@ -8,20 +8,20 @@ This is the final project for [coursera online course: "How to Win a Data Scienc
 
 ### Exploratory Data Analysis
 
-* The overall sale show clear trend: decreasing with time, as well as seasonality: with peaks in November each year.
-* There is no missing values in this dataset. However, training set only includes item-shop pairs with non-zero sale, while test set includes all possible item-shop pairs. Thus we generate all possible item-shop pairs in the training set and assign the item count to be zero.
-* The distribution of monthly sale is largely skewed, with many items sold 0-1 times, and a few with very large sale. The competition asks prediction of sales clipped to (0,20) range, this may alleviate potential problem of unbalanced targets.
+* The overall sale shows a clear trend: decreasing with time, as well as seasonality: with peaks in November of each year.
+* There is no missing value in this dataset. However, training set only includes item-shop pairs with non-zero sales, while test set includes all possible item-shop pairs. Thus we generate all possible item-shop pairs in the training set and assign the item count to be zero.
+* The distribution of monthly sale is largely right skewed, with many items sold one of two times, and a few with very large amount of sale. The competition asks prediction of sales clipped to (0,20) range, this may alleviate potential problem of unbalanced targets.
 
 ### Feature Engineering
 
-* Start the notebook by [Denis Larionov: feature engineering, xgboost](https://www.kaggle.com/dlarionov/feature-engineering-xgboost), optimize the code of lag features and trend features. 
-* Added group statistics of recent months (e.g. average of sale for each shop during past the 12 months).
+* The feature engineering part is built on the notebook by [Denis Larionov: feature engineering, xgboost](https://www.kaggle.com/dlarionov/feature-engineering-xgboost), with optimization on the code of lag features and trend features. 
+* We also added various group statistics of recent months (e.g. average of sale for each shop during past the 12 months).
 
 ### Modeling
 
-* The validation strategy is to use month 12-32 as training set, month 33 as validation, and predict for month 34. We do not use month<12 * because we have used features involving statistics of the past 12 months.
+* The validation strategy is to use month 12-32 as training set, month 33 as validation, and predict for month 34. We do not use month<12 because we have used features involving statistics of up to 12 past months.
 * Three single models are fitted: LGBMRegressor, XGBRegressor, multilayer neural network.
-Model ensembling is performed with weighted average and linear regression. The second level models are fitted using the prediction of validation set as features.
+Model ensembling is performed with weighted average and linear regression. The second level models are fitted with the predictions of validation set as features.
 
 ### public scores:
 * singel model:  
