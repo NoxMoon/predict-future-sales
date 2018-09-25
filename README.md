@@ -1,20 +1,21 @@
 # Predict future sales 
 
-This is the final project for coursera online course: "How to Win a Data Science Competition: Learn from Top Kagglers".It is also a public challenge on [Kaggle platform](https://www.kaggle.com/c/competitive-data-science-predict-future-sales).
+This is the final project for [coursera online course: "How to Win a Data Science Competition: Learn from Top Kagglers"](https://www.coursera.org/learn/competitive-data-science/). It is also a public challenge on [Kaggle platform](https://www.kaggle.com/c/competitive-data-science-predict-future-sales).
 
 ### Goal
 
-In this competition you will work with a challenging time-series dataset consisting of daily sales data, kindly provided by one of the largest Russian software firms - 1C Company. We are asking you to predict total sales for every product and store in the next month. By solving this competition you will be able to apply and enhance your data science skills.
+*In this competition you will work with a challenging time-series dataset consisting of daily sales data, kindly provided by one of the largest Russian software firms - 1C Company. We are asking you to predict total sales for every product and store in the next month. By solving this competition you will be able to apply and enhance your data science skills.*
 
 ### Exploratory Data Analysis
 
 * The overall sale show clear trend: decreasing with time, as well as seasonality: with peaks in November each year.
-* There are no missing values in this dataset. However, training set includes item-shop pairs with non-zero sale, while test set includes all possible item-shop pairs. Thus we generate all possible item-shop pairs in the training set and assign the item count to be zero.
+* There is no missing values in this dataset. However, training set only includes item-shop pairs with non-zero sale, while test set includes all possible item-shop pairs. Thus we generate all possible item-shop pairs in the training set and assign the item count to be zero.
 * The distribution of monthly sale is largely skewed, with many items sold 0-1 times, and a few with very large sale. The competition asks prediction of sales clipped to (0,20) range, this may alleviate potential problem of unbalanced targets.
 
 ### Feature Engineering
 
-* The feature engineering part is built on the notebook by [Denis Larionov: eature engineering, xgboost](https://www.kaggle.com/dlarionov/feature-engineering-xgboost), with optimization on lag features and trend features. We also added group statistics of recent months (e.g. average of sale for each shop during past the 12 months).
+* Start the notebook by [Denis Larionov: feature engineering, xgboost](https://www.kaggle.com/dlarionov/feature-engineering-xgboost), optimize the code of lag features and trend features. 
+* Added group statistics of recent months (e.g. average of sale for each shop during past the 12 months).
 
 ### Modeling
 
